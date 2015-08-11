@@ -1,32 +1,46 @@
-= form_for(@statistic, method: :get, url: statistics_path) do |f|
-  %form
-    .form-group
-      %label Text
-      = f.text_area :text, class: 'form-control', rows: 4
-    .form-group
-      %label Font Size
-      = f.number_field :font_size, class: 'form-control'
-    .form-group
-      %label Max Line Width
-      = f.number_field :max_width, class: 'form-control'
-    = f.submit 'Submit', class: 'btn btn-default'
-%h4 Statistics
-
-- if @statistic.calculated?
-  %table.table
-    %tr
-      %th
-        = '#'
-      %th
-        Line
-      %th
-        Width
-    - @statistic.values.each_with_index do |line, index|
-      %tr
-        %td
-          = index + 1
-        %td
-          = line[:line]
-        %td
-          = line[:width].round(2)
-          = 'px'
+.row
+  .col-md-12
+    %h1 Text Width Statistics
+    = form_for(@statistic, method: :get, url: statistics_path) do |f|
+      %form
+        .row
+          .col-md-4
+            .form-group
+              %label Font
+              = f.select :font_name, $fonts.keys, {}, class: 'form-control'
+          .col-md-4
+            .form-group
+              %label Font Size
+              = f.number_field :font_size, class: 'form-control'
+          .col-md-4
+            .form-group
+              %label Max Line Width
+              = f.number_field :max_width, class: 'form-control'
+        .row
+          .col-md-12
+        .form-group
+          %label Text
+          = f.text_area :text, class: 'form-control', rows: 4
+        
+        = f.submit 'Submit', class: 'btn btn-default'
+- if @lines.present?
+  .row
+    .col-md-12
+      %h2 Results
+      %table.table
+        %tr
+          %th
+            = '#'
+          %th
+            Line
+          %th
+            Width
+        - @lines.each_with_index do |line, index|
+          %tr
+            %td
+              = index + 1
+            %td
+              = line[:line]
+            %td
+              = line[:width].round(2)
+              = 'px'

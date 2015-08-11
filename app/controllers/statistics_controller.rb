@@ -1,18 +1,18 @@
 class StatisticsController < ApplicationController
   
   def index
-    @statistic = Statistic.new(statistic_params)
-  end
-
-  def calculate
-    puts params
-    redirect_to statistics_path
+    unless statistic_params.empty?
+      @statistic = TextStatistic.new(statistic_params)
+      @lines = @statistic.lines if @statistic.valid?
+    else
+      @statistic = TextStatistic.new
+    end
   end
 
   private
 
   def statistic_params
-    params.fetch(:statistic, {}).permit(:text, :font_size, :max_width)
+    params.fetch(:text_statistic, {}).permit(:text, :font_name, :font_size, :max_width)
   end
 
 end

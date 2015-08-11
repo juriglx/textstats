@@ -3,11 +3,10 @@
     <style type="text/css">
         .sizebox {
             position: absolute;
-            visibility: hidden;
             height: auto;
             width: auto;
             white-space: nowrap;
-            font-size: 60px;
+            font-size: 20px;
             font-family: 'TizenSans Regular';
         }
 
@@ -21,7 +20,7 @@
 </head>
 <body>
     inspect with developer tools
-    <div class="sizebox">
+    <div class="sizebox" style='width: 300px; white-space: normal;'>
         Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
         tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
         quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
@@ -30,7 +29,10 @@
         proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
     </div>
     <div class="sizebox">
-        hello  world
+        hello world
+    </div>
+    <div class="sizebox">
+        hello &nbsp;world
     </div>
 </body>
 </html>
