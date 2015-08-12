@@ -25,7 +25,7 @@ class TextStatistic
     tokens.each do |token|
       width = string_width(token)
 
-      if (current_line[:width] + width) > @max_width.to_f
+      if (current_line[:width] > 0) && ((current_line[:width] + width) > @max_width.to_f)
         lines << {line: '', width: 0.0}
         current_line = lines.last
       end

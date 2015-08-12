@@ -31,8 +31,12 @@ class TextStatisticTest < ActiveSupport::TestCase
 
   test "should break up multiple whitespaces" do
     statistic = TextStatistic.new(font_name: 'TizenSansRegular', font_size: '20', max_width: '100', text: 'a                            a')
-    puts statistic.lines
     assert_equal 2, statistic.lines.size
+  end
+
+  test "should not return empty lines if text is to wide for max_width" do
+    statistic = TextStatistic.new(font_name: 'TizenSansRegular', font_size: '20', max_width: '40', text: 'exercitation')
+    assert_equal 1, statistic.lines.size
   end 
 
 end
