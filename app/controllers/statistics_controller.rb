@@ -1,11 +1,10 @@
 class StatisticsController < ApplicationController
   
   def index
-    unless statistic_params.empty?
-      @statistic = TextStatistic.new(statistic_params)
-      @lines = @statistic.lines if @statistic.valid?
-    else
-      @statistic = TextStatistic.new
+    @statistic = TextStatistic.new(statistic_params)
+
+    if @statistic.valid?
+      @lines = @statistic.lines 
     end
   end
 
