@@ -27,6 +27,12 @@ class TextStatisticTest < ActiveSupport::TestCase
     statistic = TextStatistic.new(font_name: 'TizenSansRegular', font_size: '20', max_width: '300', text: lorem_ipsum)
     assert_equal 15, statistic.lines.size
     assert_operator 300, :>, statistic.lines.map{ |line| line[:width] }.max
-  end  
+  end 
+
+  test "should break up multiple whitespaces" do
+    statistic = TextStatistic.new(font_name: 'TizenSansRegular', font_size: '20', max_width: '100', text: 'a                            a')
+    puts statistic.lines
+    assert_equal 2, statistic.lines.size
+  end 
 
 end

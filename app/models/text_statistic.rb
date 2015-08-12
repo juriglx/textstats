@@ -40,7 +40,7 @@ class TextStatistic
   private
 
   def tokens
-    @tokens ||= @text.scan(/\S+|\s+/)
+    @tokens ||= @text.scan(/\S+|\s/)
   end
 
   def string_width(string)
